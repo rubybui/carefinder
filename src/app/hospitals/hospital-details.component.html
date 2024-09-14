@@ -1,0 +1,19 @@
+<nz-spin [nzSpinning]="loading">
+    <nz-card *ngIf="!loading && hospital" nzTitle="Hospital Details" style="width: 80%; margin: 20px auto;" >
+      <nz-card-meta
+        nzTitle="{{ hospital.hospital_name }}"
+        nzDescription="Hospital located at {{ hospital.address }}, {{ hospital.city }}, {{ hospital.state }}"
+
+      >
+      </nz-card-meta>
+
+      <p >Provider ID: {{ hospital.provider_id }}</p>
+      <p>Zip Code: {{ hospital.zip_code }}</p>
+      <p>County: {{ hospital.county_name }}</p>
+      <p>Emergency Services: {{ hospital.emergency_services }}</p>
+      <p>Latitude: {{ hospital.latitude }}</p>
+      <p>Longitude: {{ hospital.longitude }}</p>
+    </nz-card>
+
+  </nz-spin>
+  

@@ -1,0 +1,78 @@
+<div>
+    <h1>Hospitals List</h1>
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group nzPrefixIcon="environment">
+              <input formControlName="city" nz-input placeholder="City" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+    
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group nzPrefixIcon="global">
+              <input formControlName="state" nz-input placeholder="State" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+    
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group nzPrefixIcon="home">
+              <input formControlName="county" nz-input placeholder="County" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+    
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group nzPrefixIcon="idcard">
+              <input formControlName="name" nz-input placeholder="Name" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+    
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzType="primary" (click)="fetchData()">Search</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <div *ngIf="dataSet.length > 0" style="margin-top: 20px;">
+        <p>Found {{ dataSet.length }} hospitals in {{ querySummary }}</p>
+    </div>
+    
+    <nz-table #basicTable [nzData]="dataSet" ngSkipHydration>
+        <thead>
+            <tr>
+                <th>Provider ID</th>
+                <th>Hospital Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>County</th>
+                <th>Emergency Services</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data"
+            (click)="goToHospitalDetails(data.provider_id)"
+            style="cursor: pointer;">
+                <td>{{ data.provider_id }}</td>
+                <td>{{ data.hospital_name }}</td>
+                <td>{{ data.address }}</td>
+                <td>{{ data.city }}</td>
+                <td>{{ data.state }}</td>
+                <td>{{ data.zip_code }}</td>
+                <td>{{ data.county_name }}</td>
+                <td>{{ data.emergency_services }}</td>
+                <td>{{ data.latitude }}</td>
+                <td>{{ data.longitude }}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
